@@ -1,20 +1,69 @@
-{% extends 'base.html' %}
-
-{% block meta %}
+<!DOCTYPE html>
 <title>Login</title>
-{% endblock meta %}
 
-{% block content %}
+<html>
 
+<head> 
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+    form {border: 3px solid #f1f1f1;}
+    body {
+        background: linear-gradient(90deg, #C7C5F4, #776BCC);	
+        }
+    input[type=text], input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }   
+    .container {
+            padding: 16px;
+            }
+     input[type=submit] {
+            background-color: #04AA6D;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+                    }
+        h1{
+            color: rgb(190, 104, 5);
+            text-align: center;
+            font-size:30px;
+            font-weight:bold;
+            }
+        a{
+            color: rgb(0, 0, 0);
+            text-align: center;
+            font-size:20px;
+            font-weight:bold;
+        }
+
+    </style>
+</head>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">PBP E</a>
+  </nav>
 <div class = "login">
 
     <h1>Login</h1>
 
     <form method="POST" action="">
         {% csrf_token %}
-        <table>
+        <div class="container">
             <tr>
-                <td>Username: </td>
+                <label for="username"></label><td>Username: </td></label>
                 <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
             </tr>
                     
@@ -27,7 +76,7 @@
                 <td></td>
                 <td><input class="btn login_btn" type="submit" value="Login"></td>
             </tr>
-        </table>
+        </div>
     </form>
 
     {% if messages %}
@@ -38,8 +87,9 @@
         </ul>
     {% endif %}     
         
-    Belum mempunyai akun? <a href="{% url 'wishlist:register' %}">Buat Akun</a>
+    <h1>Belum mempunyai akun?</h1> 
+    <a href="{% url 'wishlist:register' %}">Buat Akun</a>
 
 </div>
+</html>
 
-{% endblock content %}

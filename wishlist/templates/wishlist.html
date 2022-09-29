@@ -4,10 +4,13 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <title>Internal CSS</title>
         <style>
             body {
-                background-color: rgb(153, 57, 19);
+                background: linear-gradient(90deg, #C7C5F4, #c77d0f);	
             }   
             .main {
                 text-align:center; 
@@ -48,6 +51,17 @@
             tr:nth-child(even){background-color: #f2f2f2}
         </style>
     </head>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">{{nama}} - PBP E</a>
+          </div>
+          <button class="btn btn-danger navbar-btn"><a href="{% url 'wishlist:logout' %}">Logout</a></button>
+        </div>
+      </nav>
+      
+      
+      
 <h5>Nama: </h5>
 <h5>{{nama}}</h5>
 
@@ -69,7 +83,4 @@
 </table>
 </div>
 <h5>Sesi terakhir login: {{ last_login }}</h5>
-<div class="center">
-<button><a href="{% url 'wishlist:logout' %}">Logout</a></button>
-</div>
 </html>
