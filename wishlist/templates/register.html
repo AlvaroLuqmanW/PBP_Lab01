@@ -45,6 +45,9 @@
         a:hover, a:active {
             background-color: red;
             }
+        div{
+    	text-align: center;
+          }
 
 
     </style>
@@ -68,8 +71,9 @@
                 </tr>  
             </table>  
         </form>
+        <div>
         <a href="{% url 'wishlist:login' %}" style="text-align:center">Cancel</a>
-
+    </div>
 
     {% if messages %}  
         <ul>   
