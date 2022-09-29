@@ -71,3 +71,6 @@ def logout_user(request):
     response.delete_cookie('last_login')
     return response
 
+def show_css(request):
+    return render(request, 'CSSTutorial.html')
+
