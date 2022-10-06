@@ -11,6 +11,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from .forms import BarangForm
 
 @login_required(login_url='/wishlist/login/')
 def show_wishlist(request):
@@ -21,6 +22,28 @@ def show_wishlist(request):
     'last_login': request.COOKIES['last_login'],
 }
     return render(request, "wishlist.html", context)
+
+def show_wishlist_ajax(request):
+    if request.method == 'POST':
+        form = BarangForm(request.POST)  
+   
+        if form.is_valid():
+            nama_barang = form.cleaned_data["nama_barang"]
+            harga_barang = form.cleaned_data["harga_barang"]
+            deskripsi = form.cleaned_data["deskripsi"]
+            task_temp = tambah_barang(nama_barang, harga_barang, deskripsi)
+            task_temp.save()
+        return HttpResponseRedirect("/wishlist/ajax" )
+    else:
+        form = BarangForm()
+    data_barang_wishlist = BarangWishlist.objects.all()
+    context = {
+    'list_barang': data_barang_wishlist,
+    'nama': request.user,
+    'last_login': request.COOKIES['last_login'],
+    'form' : form
+    }
+    return render(request, "wishlist_ajax.html", context)
 
 def show_xml(request):
     data = BarangWishlist.objects.all()
@@ -73,4 +96,7 @@ def logout_user(request):
 
 def show_css(request):
     return render(request, 'CSSTutorial.html')
+
+def tambah_barang(nama_barang, harga_barang, deskripsi):
+    return BarangWishlist.objects.create(nama_barang = nama_barang, harga_barang = harga_barang, deskripsi = deskripsi)
 
